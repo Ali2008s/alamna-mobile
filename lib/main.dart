@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -85,7 +86,7 @@ Future<void> main() async {
   MediaKit.ensureInitialized();
   setupGlobalFontConfig();
 
-  await Firebase.initializeApp().then((value) {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((value) {
     if (kReleaseMode) {
       FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     }
